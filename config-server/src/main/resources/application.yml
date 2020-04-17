@@ -1,0 +1,32 @@
+####
+# Variation 1: load configuration data from a git repository
+####
+
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        encrypt.enabled: false
+        git:
+          uri: https://github.com/iseelotus/quan-config-repo
+          searchPaths: person-service, account-service
+          username:
+          password:
+
+
+####
+# Variation 2: File-based config management
+####
+
+#server:
+#  port: 8888
+#spring:
+#  profile:
+#    active: native
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:config/
