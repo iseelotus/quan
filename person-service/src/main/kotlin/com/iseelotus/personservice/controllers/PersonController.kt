@@ -8,7 +8,7 @@ import java.net.URI
 import javax.websocket.server.PathParam
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/v1/persons")
 class PersonController(private val personService: PersonService) {
     @GetMapping
     fun getPersons(): ResponseEntity<List<Person>> {

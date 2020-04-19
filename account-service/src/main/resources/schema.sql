@@ -1,11 +1,12 @@
 DROP TABLE IF EXISTS accounts;
 
-CREATE TABLE accounts {
-    id VARCHAR(36) PRIMARY KEY,
-    person_id VARCHAR(36) NOT NULL,
-    account_number VARCHAR(22) NOT NULL,
-    balance NUMERIC(10,2) NOT NULL
-}
+CREATE TABLE accounts
+(
+    id             VARCHAR(36) PRIMARY KEY,
+    person_id      VARCHAR(36)    NOT NULL,
+    account_number VARCHAR(22)    NOT NULL,
+    balance        NUMERIC(10, 2) NOT NULL
+);
 
 INSERT INTO accounts (id, person_id, account_number, balance)
 VALUES ('8e95afad-57ec-4ac9-9de6-dfbb2339323e', '2a21a5ba-ba89-49b0-baa2-f53e2ab83886', 'DE60500105179413579843', 800000.85);

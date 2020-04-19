@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 import java.net.URI
 
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/v1/accounts")
 class AccountController(private val accountService: AccountService) {
     @GetMapping
     fun getAccounts(): ResponseEntity<List<Account>> {
