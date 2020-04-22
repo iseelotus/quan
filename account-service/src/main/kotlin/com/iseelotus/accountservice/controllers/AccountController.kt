@@ -45,14 +45,4 @@ class AccountController(private val accountService: AccountService) {
             ResponseEntity.notFound().build()
         }
     }
-
-    @GetMapping("/{accountNumber}")
-    fun getAccountByAccountNumber(@PathVariable("accountNumber") accountNumber: String): ResponseEntity<Account> {
-        val account = accountService.getAccountByAccountNumber(accountNumber)
-        return if (account != null) {
-            ResponseEntity.ok(account)
-        } else {
-            ResponseEntity.notFound().build()
-        }
-    }
 }

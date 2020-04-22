@@ -16,7 +16,8 @@ class PersonRestTemplateClient(private val restTemplate: RestTemplate) {
     fun getPerson(personId: String): Person? {
         logger.debug(">>> In Account Service.getPerson: {}. Thread Id: {}", UserContextHolder.getContext().correlationId, Thread.currentThread().id)
         val restExchange = restTemplate.exchange(
-                "http://zuulservice/api/person-service/v1/persons/{personId}",
+                "http://localhost:5555/api/person-service/v1/persons/{personId}",
+ //               "http://localhost:8080/v1/persons/{personId}",
                 HttpMethod.GET,
                 null,
                 Person::class.java,

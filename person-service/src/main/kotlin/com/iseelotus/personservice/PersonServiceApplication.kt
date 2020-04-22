@@ -1,6 +1,6 @@
 package com.iseelotus.personservice
 
-import com.iseelotus.accountservice.utils.UserContextInterceptor
+import com.iseelotus.personservice.utils.UserContextInterceptor
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.cloud.client.loadbalancer.LoadBalanced
@@ -29,5 +29,3 @@ class PersonServiceApplication {
 		runApplication<PersonServiceApplication>(*args)
 	}
 }
-
-

@@ -1,4 +1,4 @@
-package com.iseelotus.accountservice.utils
+package com.iseelotus.personservice.utils
 
 import org.springframework.util.Assert
 

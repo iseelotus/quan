@@ -1,4 +1,4 @@
-package com.iseelotus.accountservice.utils
+package com.iseelotus.personservice.utils
 
 import org.springframework.http.HttpRequest
 import org.springframework.http.client.ClientHttpRequestExecution

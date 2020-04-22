@@ -1,5 +1,7 @@
-package com.iseelotus.accountservice.utils
+package com.iseelotus.personservice.utils
 
+import com.iseelotus.personservice.utils.UserContext
+import com.iseelotus.personservice.utils.UserContextHolder
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import javax.servlet.Filter
@@ -13,7 +15,6 @@ class UserContextFilter: Filter {
     override fun doFilter(p0: ServletRequest?, p1: ServletResponse?, p2: FilterChain?) {
         val httpServletRequest = p0 as HttpServletRequest
         UserContextHolder.getContext().correlationId = httpServletRequest.getHeader(UserContext.CORRELATION_ID)
-        UserContextHolder.getContext().accountId = httpServletRequest.getHeader(UserContext.ACCOUNT_ID)
         UserContextHolder.getContext().authToken = httpServletRequest.getHeader(UserContext.AUTH_TOKEN)
         UserContextHolder.getContext().userId = httpServletRequest.getHeader(UserContext.USER_ID)
 
