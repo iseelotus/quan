@@ -1,6 +1,7 @@
 package com.iseelotus.accountservice.services
 
 import com.iseelotus.accountservice.clients.PersonFeignClient
+import com.iseelotus.accountservice.clients.PersonRestTemplateClient
 import com.iseelotus.accountservice.domains.Account
 import com.iseelotus.accountservice.domains.AccountRepository
 import com.iseelotus.accountservice.domains.Person
@@ -11,13 +12,13 @@ import java.util.*
 
 @Service
 class AccountService(private val accountRepository: AccountRepository,
-                     private val personFeignClient: PersonFeignClient) {
+                     private val personRestTemplateClient: PersonRestTemplateClient) {
     @HystrixCommand(commandProperties =
     [HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value="1000")]
     )
     fun getAccount(accountId: String): Account? {
         val account = accountRepository.findById(accountId).orElse(null)
-        val person = personFeignClient.getPerson(account.personId)
+        val person = personRestTemplateClient.getPerson(account.personId)
         if (account != null && person != null) {
             account.personFamilyName = person.familyName
             account.personGivenName = person.givenName
