@@ -19,6 +19,9 @@ redis:
   server: "redis"
   port: "6379"
 signing.key: ""
+logging:
+  level:
+    root: DEBUG
 
 eureka:
   instance:

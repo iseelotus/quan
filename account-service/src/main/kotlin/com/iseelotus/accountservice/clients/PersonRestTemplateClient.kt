@@ -15,15 +15,8 @@ class PersonRestTemplateClient(private val restTemplate: RestTemplate) {
                 Thread.currentThread().id)
         val restExchange = restTemplate.exchange(
                 "http://localhost:5555/api/person-service/v1/persons/{personId}",
-                HttpMethod.GET,
-                null,
-                Person::class.java,
-                personId
-        )
-        return restExchange.body
-    }
-
     companion object {
         private val logger = LoggerFactory.getLogger(PersonRestTemplateClient::class.java)
     }
+
 }
