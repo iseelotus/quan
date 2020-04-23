@@ -1,13 +1,12 @@
 package com.iseelotus.accountservice.utils
 
+import org.springframework.stereotype.Component
+
+@Component
 data class UserContext(
-        var correlationId: String = "",
-        var authToken: String = "",
-        var userId: String = ""
+        var correlationId: String = String()
 ) {
     companion object {
-        const val CORRELATION_ID = "tmx-correlation-id"
-        const val AUTH_TOKEN = "tmx-auth-token"
-        const val USER_ID = "tmx-user-id"
+        val CORRELATION_ID = "tmx-correlation-id"
     }
 }

@@ -10,14 +10,11 @@ import javax.servlet.http.HttpServletRequest
 
 @Component
 class UserContextFilter: Filter {
-    override fun doFilter(p0: ServletRequest?, p1: ServletResponse?, p2: FilterChain?) {
-        val httpServletRequest = p0 as HttpServletRequest
+    override fun doFilter(servletRequest: ServletRequest?, servletResponse: ServletResponse?, filterChain: FilterChain?) {
+        val httpServletRequest = servletRequest as HttpServletRequest
         UserContextHolder.getContext().correlationId = httpServletRequest.getHeader(UserContext.CORRELATION_ID)
-        UserContextHolder.getContext().authToken = httpServletRequest.getHeader(UserContext.AUTH_TOKEN)
-        UserContextHolder.getContext().userId = httpServletRequest.getHeader(UserContext.USER_ID)
-
-        logger.debug("Account Service Incoming Correlation id: {}.", httpServletRequest.getHeader(UserContext.CORRELATION_ID))
-        p2?.doFilter(httpServletRequest, p1)
+        logger.debug("Account service incoming correlation id: {}", UserContextHolder.getContext().correlationId)
+        filterChain?.doFilter(httpServletRequest, servletResponse)
     }
 
     companion object {

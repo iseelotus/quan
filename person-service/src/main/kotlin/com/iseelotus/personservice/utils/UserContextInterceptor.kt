@@ -12,10 +12,6 @@ class UserContextInterceptor: ClientHttpRequestInterceptor {
                 UserContext.CORRELATION_ID,
                 UserContextHolder.getContext().correlationId
         )
-        headers.add(
-                UserContext.AUTH_TOKEN,
-                UserContextHolder.getContext().authToken
-        )
         return execution.execute(request, body)
     }
 }

@@ -4,19 +4,22 @@ import com.iseelotus.accountservice.utils.UserContextInterceptor
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient
+import org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient
+import org.springframework.cloud.openfeign.EnableFeignClients
 import org.springframework.cloud.client.loadbalancer.LoadBalanced
-import org.springframework.context.annotation.Bean
-import org.springframework.http.client.ClientHttpRequestInterceptor
-import org.springframework.web.client.RestTemplate
-import java.util.*
 
 @SpringBootApplication
-//@EnableCircuitBreaker
+@EnableEurekaClient
+@EnableCircuitBreaker
 class AccountServiceApplication {
-	//@LoadBalanced
+	fun main(args: Array<String>) {
+		runApplication<AccountServiceApplication>(*args)
+	}
+
 	@Bean
 	fun getRestTemplate(): RestTemplate {
-		var template = RestTemplate()
+		val template = RestTemplate()
 		val interceptors = template.interceptors
 		if (interceptors == null) {
 			template.interceptors = Collections.singletonList(UserContextInterceptor() as ClientHttpRequestInterceptor)
@@ -25,10 +28,6 @@ class AccountServiceApplication {
 			template.interceptors = interceptors
 		}
 		return template
-	}
-
-	fun main(args: Array<String>) {
-		runApplication<AccountServiceApplication>(*args)
 	}
 }
 

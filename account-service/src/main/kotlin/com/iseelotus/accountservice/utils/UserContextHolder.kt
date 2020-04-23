@@ -8,14 +8,13 @@ class UserContextHolder {
         fun getContext(): UserContext {
             var context = userContext.get()
             if (context == null) {
-                context = UserContext()
-                userContext.set(context)
+                userContext.set(UserContext())
             }
             return userContext.get()
         }
 
         fun setContext(context: UserContext) {
-            Assert.notNull(context, "UserContext should not be null")
+            Assert.notNull(context, "Null UserContext instance not permitted")
             userContext.set(context)
         }
     }
