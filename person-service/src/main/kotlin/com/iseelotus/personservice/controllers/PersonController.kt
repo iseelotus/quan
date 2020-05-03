@@ -42,4 +42,10 @@ class PersonController(private val personService: PersonService) {
         val person = personService.addPerson(person)
         return ResponseEntity.created(URI("/persons/"+person.id)).body(person)
     }
+
+    @PutMapping
+    fun updatePerson(@RequestBody person: Person): ResponseEntity<Person?> {
+        val person = personService.updatePerson(person)
+        return ResponseEntity.ok(person)
+    }
 }

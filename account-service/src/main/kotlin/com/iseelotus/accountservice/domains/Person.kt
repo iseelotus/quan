@@ -1,4 +1,7 @@
 package com.iseelotus.accountservice.domains
 
-data class Person(val familyName: String,
-                  val givenName: String)
+import java.io.Serializable
+
+data class Person(val id: String,
+                  val familyName: String,
+                  val givenName: String) : Serializable

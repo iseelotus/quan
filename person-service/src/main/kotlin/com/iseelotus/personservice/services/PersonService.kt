@@ -2,14 +2,15 @@ package com.iseelotus.personservice.services
 
 import com.iseelotus.personservice.domains.Person
 import com.iseelotus.personservice.domains.PersonRepository
-import org.springframework.beans.factory.annotation.Autowired
+import com.iseelotus.personservice.event.source.SourceBean
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class PersonService {
-    @Autowired
-    private lateinit var personRepository: PersonRepository
+class PersonService(
+        private val personRepository: PersonRepository,
+        private val sourceBean: SourceBean
+) {
 
     fun getPerson(id: String): Person? {
         return personRepository.findById(id).orElse(null)
@@ -18,11 +19,14 @@ class PersonService {
     fun addPerson(person: Person): Person {
         person.id = UUID.randomUUID().toString()
         personRepository.save(person)
+        sourceBean.publishPersonChange("SAVE", person.id)
         return person
     }
 
-    fun updatePerson(person: Person) {
-        personRepository.save(person)
+    fun updatePerson(person: Person): Person {
+        val person = personRepository.save(person)
+        sourceBean.publishPersonChange("UPDATE", person.id)
+        return person
     }
 
     fun deletePerson(person: Person) {
